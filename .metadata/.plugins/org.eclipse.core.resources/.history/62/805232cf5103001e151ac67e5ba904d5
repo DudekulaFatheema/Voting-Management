@@ -1,0 +1,23 @@
+package com.voter.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.voter.entity.Voter;
+
+@Service
+public interface VoterService {
+	public Voter addVoter(Voter voter) throws Exception;
+	
+	public int deleteVoter(int voterId) throws Exception;
+	
+	public Voter updateVoter(Voter voter) throws Exception;
+	
+	public List<Voter> getAllVoters() throws Exception;
+	
+	public Voter registerVoter(Voter voter) throws NullUserFound, NullEmailFoundException;
+	
+	public  Voter loginVoter(String userName, String password) throws NullUserFound;
+
+}

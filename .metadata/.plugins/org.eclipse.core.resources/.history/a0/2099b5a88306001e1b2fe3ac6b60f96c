@@ -1,0 +1,179 @@
+package com.voter.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.slf4j.Logger;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import org.slf4j.LoggerFactory;
+
+import static org.mockito.Mockito.when;
+
+import com.voter.entity.Voter;
+import com.voter.exception.NullUserFound;
+import com.voter.repository.VoterRepository;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.when;
+
+
+
+
+@SpringBootTest
+public class VoterServiceImplTest {
+	
+	@Mock
+	VoterRepository voterRepo;
+	
+	@InjectMocks
+	VoterService voterService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(VoterServiceImplTest.class);
+//	@Test
+//	void testCreateVoter() throws Exception {
+//	    Voter sampleInput = new Voter(8, "male", 15, 90876435, "haseena", "haseen4");
+//	    Voter expectedOutput = new Voter(8, "male", 18, 90879365, "haseen", "has98");
+//
+//	   
+//	    BDDMockito.given(voterRepo.save(sampleInput)).willReturn(expectedOutput);
+//
+//	    
+//	    Voter actualOutput = voterService.createVoter(sampleInput);
+//
+// 
+//	    assertEquals(expectedOutput, actualOutput);
+//	}
+//	@Test
+//
+//	public void testInsertTeamLeader() throws NullUserFound {
+//
+//	Voter voter = new Voter();
+//
+//    voter.setAge(18);
+//		 voter.setGender("male");
+//         voter.setUserName("mario");
+//         voter.setPassWord("js123");
+//
+//	when(voterRepo.save(voter)).thenReturn(voter);
+//	Voter result = voterService.registerVoter(voter);
+//	assertNotNull(result);
+//
+//	assertEquals(voter, result);
+//	verify(voterRepo, times(1)).save(voter);
+
+//	}
+	@Test
+	public void testInsertTeamLeader() throws NullUserFound {
+		Voter voter = new Voter();
+		voter.setAge(18);
+		voter.setGender("male");
+		voter.setUserName("mario");
+		voter.setPassWord("js123");
+
+		BDDMockito.given(voterRepo.save(voter)).willReturn(voter);
+
+		Voter result = voterService.registerVoter(voter);
+
+		assertNotNull(result);
+		assertEquals(voter, result);
+		verify(voterRepo, times(1)).save(voter);
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+//-----
+
+	/*
+	@Test
+	void registerVoter() throws NullUserFound, NullUserNameFoundException {
+		
+         Voter voter = new Voter();
+          voter.setAge(18);
+		 voter.setGender("male");
+         voter.setUserName("mario");
+         voter.setPassWord("js123");
+       Voter registeredVoter = voterService.registerVoter(voter);
+
+	 assertNotNull(registeredVoter);
+      assertEquals(18, registeredVoter.getAge());
+     assertEquals("male", registeredVoter.getGender());
+ assertEquals("mario", registeredVoter.getUserName());
+  assertEquals("js123", registeredVoter.getPassWord());
+	
+	
+
+}
+	/*@Test
+	void updateVoter() throws NullUserFound {
+		Voter v = new Voter(8,"female", 18, 90879365,"User","pass@123");
+		
+		
+		assertThrows(NullUserFound.class, () -> voterService.updateVoter(v));
+				
+	}
+	@Test
+
+	 void UpdateVoter() throws Exception {
+
+	logger.info("Inside UpdateVoter");
+
+
+	Voter  voter = new Voter();
+
+	voter.setAge(18);
+	  voter.setVoterId(1);
+		 voter.setGender("male");
+         voter.setUserName("mario");
+         voter.setPassWord("js123");
+         Voter updateVoter = voterService.updateVoter(voter);
+
+	 assertNotNull(updateVoter);
+
+	assertEquals(1, updateVoter.getVoterId());
+
+	assertEquals(18, updateVoter.getAge());
+     assertEquals("male", updateVoter.getGender());
+ assertEquals("mario", updateVoter.getUserName());
+  assertEquals("js123", updateVoter.getPassWord());
+
+	}
+*/
+	/*@Test
+
+	 void deleteVoter() throws Exception {
+
+	logger.info("Inside deleteVoter");
+
+	 // Create a team member with a valid ID
+
+	int voterId = 1;
+
+	 try {
+
+	// Delete the team member
+
+	voterService.delete(voterId);
+
+	 // Attempt to retrieve the deleted team member should throw InvalidUserId exception
+
+	assertThrows(InvalidUserId.class, () -> voterService.getByVoterId(voterId));
+
+	} catch (InvalidUserId e) {
+
+	// fail("InvalidUserId exception should be thrown");
+
+	}
+
+	}*/

@@ -1,0 +1,5 @@
+package com.voterjwt.model;
+
+public enum ERole {
+
+}

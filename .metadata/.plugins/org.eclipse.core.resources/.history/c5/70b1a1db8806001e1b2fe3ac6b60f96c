@@ -1,0 +1,103 @@
+package com.voter.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.BDDMockito;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.slf4j.Logger;
+
+import org.slf4j.LoggerFactory;
+
+import com.voter.entity.Voter;
+import com.voter.exception.NullValueFoundException;
+import com.voter.repository.VoterRepository;
+
+
+
+@SpringBootTest
+public class VoterServiceImplTest {
+	
+	@Mock
+	VoterRepository voterRepo;
+	
+	@InjectMocks
+	VoterService voterService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(VoterServiceImplTest.class);
+	
+		
+    @Test
+	
+	void testAddMedicine() throws NullValueFoundException{
+		
+		Voter sampleInput = new Voter(8,"male", 15, 90876435, "haseena","haseen4");
+		Voter expectedOutput = new Voter(8,"male", 18, 90879365, "haseen","has98");
+		
+		BDDMockito.given(voterService.createVoter(sampleInput)).willReturn(expectedOutput);
+		
+		Voter actualOutput = voterService.createVoter(sampleInput);
+		
+		assertEquals(expectedOutput,actualOutput);
+	}
+	
+	/*@Test
+	void registerVoter() throws NullUserFound, NullUserNameFoundException {
+		
+         Voter voter = new Voter();
+          voter.setAge(18);
+		 voter.setGender("male");
+         voter.setUserName("mario");
+         voter.setPassWord("js123");
+       Voter registeredVoter = voterService.registerVoter(voter);
+
+	 assertNotNull(registeredVoter);
+      assertEquals(18, registeredVoter.getAge());
+     assertEquals("male", registeredVoter.getGender());
+ assertEquals("mario", registeredVoter.getUserName());
+  assertEquals("js123", registeredVoter.getPassWord());
+	
+	
+
+}
+	@Test
+	void updateVoter() throws NullUserFound {
+		Voter v = new Voter(8,"female", 18, 90879365,"User","pass@123");
+		
+		
+		assertThrows(NullUserFound.class, () -> voterService.updateVoter(v));
+				
+	}
+	/*@Test
+
+	 void UpdateVoter() throws Exception {
+
+	logger.info("Inside UpdateVoter");
+
+
+	Voter  voter = new Voter();
+
+	voter.setAge(18);
+	  voter.setVoterId(1);
+		 voter.setGender("male");
+         voter.setUserName("mario");
+         voter.setPassWord("js123");
+         Voter updateVoter = voterService.updateVoter(voter);
+
+	 assertNotNull(updateVoter);
+
+	assertEquals(1, updateVoter.getVoterId());
+
+	assertEquals(18, updateVoter.getAge());
+     assertEquals("male", updateVoter.getGender());
+ assertEquals("mario", updateVoter.getUserName());
+  assertEquals("js123", updateVoter.getPassWord());
+
+	}
+
+	*/
+}

@@ -1,0 +1,5 @@
+package com.voter.entity;
+
+public class Voter {
+
+}

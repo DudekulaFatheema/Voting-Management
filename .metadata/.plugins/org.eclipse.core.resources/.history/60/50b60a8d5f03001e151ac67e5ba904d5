@@ -1,0 +1,17 @@
+package com.voter.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.voter.entity.Voter;
+
+public interface VoterRepository extends JpaRepository<Voter, Long> , IVoterCustomRepository {
+
+	
+	@Query("from Voter v where v.voterId=:voterId")
+	public Voter getByVoterId(@Param(value="voterId")Integer voterId );
+	
+	@Query("from Voter v where v.userName=:userName and p.password=:password")
+	public Voter findVoterByUserNamePassword(@Param(value="UserName") String userName, @Param(value="password")String password);
+}

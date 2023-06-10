@@ -1,0 +1,5 @@
+package com.voter.service;
+
+public class VoterServiceImpl {
+
+}
