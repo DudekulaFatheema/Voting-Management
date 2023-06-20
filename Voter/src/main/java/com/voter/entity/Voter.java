@@ -14,7 +14,7 @@ public class Voter {
 	@Id
 	@GeneratedValue
 	private int voterId;
-	   
+	   private String name;
 	private String gender;
 	private int age;
 	private long phoneNumber;
